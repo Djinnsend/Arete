@@ -22,8 +22,10 @@ class ComposerAutoloaderInit8e554d7c3a64d44d807e5aaf70705197
             return self::$loader;
         }
 
+        require __DIR__ . '/platform_check.php';
+
         spl_autoload_register(array('ComposerAutoloaderInit8e554d7c3a64d44d807e5aaf70705197', 'loadClassLoader'), true, true);
-        self::$loader = $loader = new \Composer\Autoload\ClassLoader();
+        self::$loader = $loader = new \Composer\Autoload\ClassLoader(\dirname(\dirname(__FILE__)));
         spl_autoload_unregister(array('ComposerAutoloaderInit8e554d7c3a64d44d807e5aaf70705197', 'loadClassLoader'));
 
         $useStaticLoader = PHP_VERSION_ID >= 50600 && !defined('HHVM_VERSION') && (!function_exists('zend_loader_file_encoded') || !zend_loader_file_encoded());
@@ -50,24 +52,6 @@ class ComposerAutoloaderInit8e554d7c3a64d44d807e5aaf70705197
 
         $loader->register(true);
 
-        if ($useStaticLoader) {
-            $includeFiles = Composer\Autoload\ComposerStaticInit8e554d7c3a64d44d807e5aaf70705197::$files;
-        } else {
-            $includeFiles = require __DIR__ . '/autoload_files.php';
-        }
-        foreach ($includeFiles as $fileIdentifier => $file) {
-            composerRequire8e554d7c3a64d44d807e5aaf70705197($fileIdentifier, $file);
-        }
-
         return $loader;
-    }
-}
-
-function composerRequire8e554d7c3a64d44d807e5aaf70705197($fileIdentifier, $file)
-{
-    if (empty($GLOBALS['__composer_autoload_files'][$fileIdentifier])) {
-        require $file;
-
-        $GLOBALS['__composer_autoload_files'][$fileIdentifier] = true;
     }
 }

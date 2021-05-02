@@ -32,7 +32,7 @@ private static $installed = array (
     'aliases' => 
     array (
     ),
-    'reference' => 'bab5c0b9005ccd68f3687634fb47c9324eb1dae7',
+    'reference' => '1946f13df474781a9441e1d22c7d0c85071a679c',
     'name' => 'phpunit/php-text-template',
   ),
   'versions' => 
@@ -44,7 +44,7 @@ private static $installed = array (
       'aliases' => 
       array (
       ),
-      'reference' => 'bab5c0b9005ccd68f3687634fb47c9324eb1dae7',
+      'reference' => '1946f13df474781a9441e1d22c7d0c85071a679c',
     ),
   ),
 );
