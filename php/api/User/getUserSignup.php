@@ -39,6 +39,7 @@ if (
             //Org already exists
             $response['error'] = true;
             $response['errorMessage'] = "Identity already exists. Please log in";
+            echo json_encode($response);
         } else {
             //Org doesn't exist
             $query = "INSERT INTO users(userID,username,phoneNum,userMail,fname,lname,birthDate,occupation,user_describe)VALUES (0,'$username','$userNumber','$userMail','$fname','$lname','$dateOfBirth','$userJob','$userDescribe')";
@@ -48,17 +49,24 @@ if (
             if ($queryOne && $queryTwo){
                 $response['error'] = false;
                 $response['errorMessage'] = "";
+                echo json_encode($response);
             }else{
                 $response['error'] = true;
-                $response['errorMessage'] = "Query failed. Try again";    
+                $response['errorMessage'] = "Query failed. Try again"; 
+                echo json_encode($response);   
             }
         }
     } else {
         //If execution fails
         $response['error'] = true;
         $response['errorMessage'] = "Couldn't process data. Try again later";
+        echo json_encode($response);
     }
 
-    echo json_encode($response);
    
+}else{
+    $response['error'] = true;
+    $response['errorMessage'] = "Couldn't process data. Try again later";
+    echo json_encode($response);
+
 }
