@@ -20,13 +20,9 @@ if (
     $userNumber = $_POST['userNum'];
     $userJob = $_POST['userJob'];
     $userDescribe = $_POST['user_describe'];
-    if($_POST['pass1'] == $_POST['pass2']) {
-       $userPass =  md5($_POST['pass']);
+    if($_POST['pass1'] == $_POST['pass2']){
+        $userPass = md5($_POST['pass1']);
     }else{
-        $userPass = false;
-    }
-
-    if($userPass == false){
         $response['error'] = true;
         $response['errorMessage'] = "Passwords don't match";
         echo json_encode($response);
