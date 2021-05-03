@@ -20,6 +20,8 @@ if (
     $userNumber = $_POST['userNum'];
     $userJob = $_POST['userJob'];
     $userDescribe = $_POST['user_describe'];
+    // $userPass = $_POST['pass1'] == $_POST['pass2'] ? md5($_POST['pass']) : false;
+
     if($_POST['pass1'] == $_POST['pass2']){
         $userPass = md5($_POST['pass1']);
     }else{
@@ -51,7 +53,7 @@ if (
             $response['errorMessage'] = "Username already exists. Please use a different one";
             echo json_encode($response);
             return;
-        }else {
+        } else {
             //Org doesn't exist
             $query = "INSERT INTO users(userID,username,phoneNum,userMail,fname,lname,birthDate,occupation,user_describe)VALUES (0,'$username','$userNumber','$userMail','$fname','$lname','$dateOfBirth','$userJob','$userDescribe')";
             $query2 = "INSERT INTO userLogin(userMail,username,userPass) VALUES('$userMail','$userName','$userPass')";
@@ -60,23 +62,22 @@ if (
             if ($queryOne && $queryTwo){
                 $response['error'] = false;
                 $response['errorMessage'] = "";
-                echo json_encode($response);
             }else{
                 $response['error'] = true;
-                $response['errorMessage'] = "Query failed. Try again"; 
-                echo json_encode($response);   
+                $response['errorMessage'] = "Query failed. Try again";    
             }
         }
     } else {
         //If execution fails
         $response['error'] = true;
         $response['errorMessage'] = "Couldn't process data. Try again later";
-        echo json_encode($response);
     }
 
+    echo json_encode($response);
    
 }else{
     $response['error'] = true;
     $response['errorMessage'] = "Couldn't process data. Try again later";
     echo json_encode($response);
+
 }

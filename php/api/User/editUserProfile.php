@@ -44,3 +44,20 @@ if (
     $response['message'] = "Not enough parameters passed";
     echo json_encode($response);
 }
+
+
+
+    
+    
+    
+
+
+
+    // $updateQuery = "UPDATE events SET title = '$title',objective = '$obj',goal = '$goal',
+    // requirements = '$require',location = '$location',eventMail = '$mail',
+    // eventReward = '$rewards',accomodation = '$accomodations', 
+    // applicationLink = '$link', eventEndDate = '$deadline' WHERE eventID = '$id'";
+// }else{
+//     $response['success'] = false;
+//     echo json_encode($response);
+// }
