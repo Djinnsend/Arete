@@ -30,17 +30,28 @@ if (
 
 
     //Checking if email or name already exists in database
-    $userQuery = "SELECT * FROM userLogin WHERE userMail = '$userMail' OR username = '$userName'";
+    // $userQuery = "SELECT * FROM userLogin WHERE userMail = '$userMail' OR username = '$userName'";
+    $userQuery = "SELECT * FROM userLogin WHERE userMail = '$userMail'";
     $execUser = mysqli_query($conn, $userQuery);                      //Executing the query
+    $userQuery2 = "SELECT * FROM userLogin WHERE username = '$userName'";
+    $execUser2 = mysqli_query($conn,$userQuery2);
+    
     if ($execUser) {                                                  //Finding number of rows to determine if info was retrieved
         //If execution successful
         $checkNumRows = mysqli_num_rows($execUser);
+        $checkNumRows2 = mysqli_num_rows($execUser2);
         if ($checkNumRows !== 0) {
             //Org already exists
             $response['error'] = true;
-            $response['errorMessage'] = "Identity already exists. Please log in";
+            $response['errorMessage'] = "Email already exists. Please use a different one";
             echo json_encode($response);
-        } else {
+            return;
+        } elseif ($checkNumRows2 !== 0) {
+            $response['error'] = true;
+            $response['errorMessage'] = "Username already exists. Please use a different one";
+            echo json_encode($response);
+            return;
+        }else {
             //Org doesn't exist
             $query = "INSERT INTO users(userID,username,phoneNum,userMail,fname,lname,birthDate,occupation,user_describe)VALUES (0,'$username','$userNumber','$userMail','$fname','$lname','$dateOfBirth','$userJob','$userDescribe')";
             $query2 = "INSERT INTO userLogin(userMail,username,userPass) VALUES('$userMail','$userName','$userPass')";
