@@ -79,5 +79,4 @@ if (
     $response['error'] = true;
     $response['errorMessage'] = "Couldn't process data. Try again later";
     echo json_encode($response);
-
 }
