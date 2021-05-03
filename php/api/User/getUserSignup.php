@@ -20,7 +20,11 @@ if (
     $userNumber = $_POST['userNum'];
     $userJob = $_POST['userJob'];
     $userDescribe = $_POST['user_describe'];
-    $userPass = $_POST['pass1'] == $_POST['pass2'] ? md5($_POST['pass']) : 'false';
+    if($_POST['pass1'] == $_POST['pass2']) {
+       $userPass =  md5($_POST['pass']);
+    }else{
+        $userPass = false;
+    }
 
     if($userPass == false){
         $response['error'] = true;
